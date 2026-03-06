@@ -6,7 +6,10 @@ app.use(express.json());
 
 /* MongoDB Atlas Connection */
 
-mongoose.connect("mongodb+srv://sahoopriyabrata:Sahoo%40123@cluster0.l5cbiaz.mongodb.net/test")
+const PORT = process.env.PORT || 4000;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://sahoopriyabrata:Sahoo%40123@cluster0.l5cbiaz.mongodb.net/test";
+
+mongoose.connect(MONGODB_URI)
 .then(()=> console.log("MongoDB Connected"))
 .catch(err => console.error("MongoDB Connection Error:", err));
 
@@ -105,6 +108,6 @@ app.delete("/users/:id", async (req,res)=>{
 
 /* Server */
 
-app.listen(4000, ()=>{
-    console.log("Server running on port 4000");
+app.listen(PORT, ()=>{
+    console.log(`Server running on port ${PORT}`);
 });
